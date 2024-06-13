@@ -10,7 +10,15 @@ import SwiftUI
 struct RecipeView: View {
     var currentRecipe: Recipe
     var body: some View {
+       
         VStack {
+            ZStack {
+                Image(currentRecipe.mainInformation.name)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: UIScreen.main.bounds.width, height: 200)
+                    .clipped()
+            }
             Text(currentRecipe.mainInformation.name)
                 .font(.title)
                 .bold()
@@ -38,13 +46,14 @@ struct RecipeView: View {
                     }
                 }
                 Section(header: Text("Directions")){
-                ForEach(currentRecipe.directions) {direction in
-                    Text(direction.description)
-                        .padding(5)
+                    ForEach(currentRecipe.directions) {direction in
+                        Text(direction.description)
+                            .padding(5)
+                    }
                 }
-            }
             }
             .listStyle(PlainListStyle())
         }
+    
     }
 }
