@@ -31,3 +31,6 @@ struct CategoryForEach: View {
     }
 }
 
+#Preview {
+    CategoryForEach()
+}

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    private func RecipesSorter() -> [Recipe] {
+    private func RecipesSorter(_ source: [Recipe] = Recipe.testRecipes) -> [Recipe] {
         var sortedRecipes = [Recipe]()
-        for recipe in Recipe.testRecipes {
+        for recipe in source {
             if recipe.mainInformation.category == category{
                 sortedRecipes.append(recipe)
             }
@@ -33,5 +33,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(category: .breakfast)
+    ContentView(category: .dinner)
 }
