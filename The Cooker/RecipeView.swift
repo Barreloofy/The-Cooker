@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RecipeView: View {
-    
     var currentRecipe: Recipe
     var body: some View {
         
@@ -41,13 +40,15 @@ struct RecipeView: View {
             .padding(.leading, -180)
             List {
                 Section(header: Text("ingredients")){
+                    
                     ForEach(currentRecipe.ingredients) {ingredient in
-                        Text(ingredient.description)
+                        Label("\(ingredient.description)", systemImage: "circle")
                     }
+                
                 }
                 Section(header: Text("Directions")){
                     ForEach(currentRecipe.directions) {direction in
-                        Text(direction.description)
+                        Label("\(direction.description)", systemImage: "circle")
                             .padding(5)
                     }
                 }
