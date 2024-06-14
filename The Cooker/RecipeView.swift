@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct RecipeView: View {
+    
     var currentRecipe: Recipe
     var body: some View {
-       
+        
         VStack {
-            ZStack {
-                Image(currentRecipe.mainInformation.name)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: UIScreen.main.bounds.width, height: 200)
-                    .clipped()
-            }
+            Image(currentRecipe.mainInformation.name)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: UIScreen.main.bounds.width, height: 200)
+                .clipped()
+                .padding(.top, -150)
+            
             Text(currentRecipe.mainInformation.name)
                 .font(.title)
                 .bold()
-                .padding(10)
             
             Text(currentRecipe.mainInformation.description)
                 .font(.subheadline)

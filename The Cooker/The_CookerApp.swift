@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct The_CookerApp: App {
+    struct The_CookerApp: App {
     var body: some Scene {
         WindowGroup {
             RecipeCategory()
