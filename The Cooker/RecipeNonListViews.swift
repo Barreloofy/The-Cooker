@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct RecipeNonListViews: View {
+    var currentRecipe: Recipe
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image(currentRecipe.mainInformation.name)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: UIScreen.main.bounds.width, height: 200)
+            .clipped()
+            .padding(.top, -150)
+        
+        Text(currentRecipe.mainInformation.name)
+            .font(.title)
+            .bold()
+        
+        Text(currentRecipe.mainInformation.description)
+            .font(.subheadline)
+            .bold()
+            .padding(5)
+            .multilineTextAlignment(.center
+            )
+        HStack {
+            Text("Author:")
+            Text(currentRecipe.mainInformation.author)
+        }
+        .font(.subheadline)
+        .bold()
+        .multilineTextAlignment(.leading)
+        .padding(.top, 10)
+        .padding(.leading, -180)
     }
-}
-
-#Preview {
-    RecipeNonListViews()
 }
