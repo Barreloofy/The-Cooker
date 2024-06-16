@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29BF19C72C1E5F2400E00598 /* RecipeNonListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BF19C62C1E5F2400E00598 /* RecipeNonListViews.swift */; };
+		29BF19C92C1E621500E00598 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BF19C82C1E621500E00598 /* RecipeListView.swift */; };
 		29D0CD752C14211100701166 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D0CD742C14211100701166 /* RecipeView.swift */; };
 		29D18AFD2C193DF00066A851 /* CategoryForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D18AFC2C193DF00066A851 /* CategoryForEach.swift */; };
 		29ED39C72C1265B8005ADD72 /* The_CookerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29ED39C62C1265B8005ADD72 /* The_CookerApp.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		29BF19C62C1E5F2400E00598 /* RecipeNonListViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeNonListViews.swift; sourceTree = "<group>"; };
+		29BF19C82C1E621500E00598 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		29D0CD742C14211100701166 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		29D18AFC2C193DF00066A851 /* CategoryForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryForEach.swift; sourceTree = "<group>"; };
 		29ED39C32C1265B8005ADD72 /* The Cooker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Cooker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 				29F5D7482C16D4CC00DF04CD /* RecipeCategory.swift */,
 				29D18AFC2C193DF00066A851 /* CategoryForEach.swift */,
 				29D0CD742C14211100701166 /* RecipeView.swift */,
+				29BF19C82C1E621500E00598 /* RecipeListView.swift */,
 				29BF19C62C1E5F2400E00598 /* RecipeNonListViews.swift */,
 				29ED39D42C126848005ADD72 /* Recipe.swift */,
 				29ED39CA2C1265B9005ADD72 /* Assets.xcassets */,
@@ -158,6 +161,7 @@
 				29ED39C92C1265B8005ADD72 /* SpecificCategoryScene.swift in Sources */,
 				29D0CD752C14211100701166 /* RecipeView.swift in Sources */,
 				29BF19C72C1E5F2400E00598 /* RecipeNonListViews.swift in Sources */,
+				29BF19C92C1E621500E00598 /* RecipeListView.swift in Sources */,
 				29ED39C72C1265B8005ADD72 /* The_CookerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
