@@ -44,6 +44,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29B4245D2C2006CD0057280A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				29F5D7482C16D4CC00DF04CD /* RecipeCategory.swift */,
+				29D18AFC2C193DF00066A851 /* CategoryForEach.swift */,
+				29ED39C82C1265B8005ADD72 /* SpecificCategoryScene.swift */,
+				29D0CD742C14211100701166 /* RecipeView.swift */,
+				29BF19C62C1E5F2400E00598 /* RecipeNonListViews.swift */,
+				29BF19C82C1E621500E00598 /* RecipeListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		29B4245E2C2007530057280A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				29ED39D42C126848005ADD72 /* Recipe.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		29ED39BA2C1265B8005ADD72 = {
 			isa = PBXGroup;
 			children = (
@@ -64,13 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				29ED39C62C1265B8005ADD72 /* The_CookerApp.swift */,
-				29ED39C82C1265B8005ADD72 /* SpecificCategoryScene.swift */,
-				29F5D7482C16D4CC00DF04CD /* RecipeCategory.swift */,
-				29D18AFC2C193DF00066A851 /* CategoryForEach.swift */,
-				29D0CD742C14211100701166 /* RecipeView.swift */,
-				29BF19C82C1E621500E00598 /* RecipeListView.swift */,
-				29BF19C62C1E5F2400E00598 /* RecipeNonListViews.swift */,
-				29ED39D42C126848005ADD72 /* Recipe.swift */,
+				29B4245D2C2006CD0057280A /* Views */,
+				29B4245E2C2007530057280A /* Model */,
 				29ED39CA2C1265B9005ADD72 /* Assets.xcassets */,
 				29ED39CC2C1265B9005ADD72 /* Preview Content */,
 			);
