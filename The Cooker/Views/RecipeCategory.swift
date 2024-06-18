@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct RecipeCategory: View {
-    @State var isPresenting: Bool = false
+    @State private var isPresenting: Bool = false
+    @ObservedObject var userData = UserData()
     var body: some View {
         NavigationView {
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
@@ -38,11 +39,7 @@ struct RecipeCategory: View {
       }
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $isPresenting) {
-            Text("test")
+            AddRecipeView(userData: userData)
         }
     }
-}
-
-#Preview {
-    RecipeCategory()
 }
