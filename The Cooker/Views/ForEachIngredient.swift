@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct ForEachIngredient: View {
+    @Binding var ingredientElement: Ingredient
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+            TextField("Ingredient Name", text: $ingredientElement.name)
+            Picker("Ingredient Unit", selection: $ingredientElement.unit) {
+                ForEach(Ingredient.Unit.allCases, id: \.self) {unit in
+                    Text(unit.rawValue)
+                }
+            }
+            TextField("Ingredient Quantity", value: $ingredientElement.quantity, format: .number)
     }
-}
-
-#Preview {
-    ForEachIngredient()
 }
