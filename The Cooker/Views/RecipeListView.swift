@@ -29,15 +29,24 @@ struct RecipeListView: View {
             
             }
             Section(header: Text("Directions")){
-                ForEach(currentRecipe.directions.indices) {directionIndx in
+                ForEach(currentRecipe.directions.indices) {directionIndex in
                     Button(action: {
-                        wasPressedDirection[directionIndx].toggle()
+                        wasPressedDirection[directionIndex].toggle()
                     }, label: {
-                        if wasPressedDirection[directionIndx] {
-                            Label("\(currentRecipe.directions[directionIndx].description)", systemImage: "circle.circle.fill").opacity(0.5).foregroundColor(.gray)
-                                .padding(5)
+                        if wasPressedDirection[directionIndex] {
+                            if currentRecipe.directions[directionIndex].isOptional {
+                                Label("(Optional) \(currentRecipe.directions[directionIndex].description)", systemImage: "circle.circle.fill").opacity(0.5).foregroundColor(.gray)
+                                    .padding(5)
+                            } else {
+                                Label("\(currentRecipe.directions[directionIndex].description)", systemImage: "circle.circle.fill").opacity(0.5).foregroundColor(.gray)
+                                    .padding(5)
+                            }
                         } else {
-                            Label("\(currentRecipe.directions[directionIndx].description)", systemImage: "circle")
+                            if currentRecipe.directions[directionIndex].isOptional {
+                                Label("(Optional) \(currentRecipe.directions[directionIndex].description)", systemImage: "circle")
+                            } else {
+                                Label("\(currentRecipe.directions[directionIndex].description)", systemImage: "circle")
+                            }
                         }
                     })
                 }

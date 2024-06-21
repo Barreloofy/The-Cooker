@@ -12,11 +12,11 @@ struct ForEachIngredient: View {
     var body: some View {
         
             TextField("Ingredient Name", text: $ingredientElement.name)
-            Picker("Ingredient Unit", selection: $ingredientElement.unit) {
+            Picker("Unit", selection: $ingredientElement.unit) {
                 ForEach(Ingredient.Unit.allCases, id: \.self) {unit in
                     Text(unit.rawValue)
                 }
             }
-            TextField("Ingredient Quantity", value: $ingredientElement.quantity, format: .number)
+            TextField("Quantity", value: $ingredientElement.quantity, format: .number)
     }
 }
