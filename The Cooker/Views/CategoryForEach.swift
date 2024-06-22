@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CategoryForEach: View {
-    
+    @ObservedObject var userData: UserData
     var body: some View {
         ForEach(MainInformation.Category.allCases, id: \.self) {category in
-            NavigationLink(destination: ContentView(category: category)) {
+            NavigationLink(destination: ContentView(userData: userData,category: category)) {
             ZStack {
                 Image(category.rawValue)
                     .resizable()
@@ -29,8 +29,4 @@ struct CategoryForEach: View {
            }
         }
     }
-}
-
-#Preview {
-    CategoryForEach()
 }

@@ -9,9 +9,9 @@ import Foundation
 
 
 class UserData: ObservableObject {
-    @Published private var recipeArray = Recipe.testRecipes
+    @Published private(set) var recipeArray = Recipe.testRecipes
     
-    func addRecipe(_ mainInformation: MainInformation,_ Ingredients: [Ingredient],_ Directions: [Direction]) {
-        recipeArray.append(Recipe(mainInformation: mainInformation, ingredients: Ingredients, directions: Directions))
+    func addRecipe(_ recipe: Recipe) {
+        recipeArray.append(recipe)
     }
 }

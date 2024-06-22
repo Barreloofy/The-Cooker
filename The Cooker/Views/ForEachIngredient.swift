@@ -18,5 +18,6 @@ struct ForEachIngredient: View {
                 }
             }
             TextField("Quantity", value: $ingredientElement.quantity, format: .number)
+            .keyboardType(.numbersAndPunctuation)
     }
 }

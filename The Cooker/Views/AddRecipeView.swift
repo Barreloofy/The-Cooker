@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct AddRecipeView: View {
+    @ObservedObject var userData: UserData
+    @Environment (\.dismiss) private var dismiss
     @State private var userRecipe = Recipe(mainInformation: MainInformation(name: "", description: "", author: "", category: .breakfast), ingredients: [Ingredient(name: "", quantity: 0.0, unit: .none)], directions: [Direction(description: "Add your Recipe`s Directions here...", isOptional: false)])
     enum isOptionalPicker: CaseIterable {
         case Yes
         case No
     }
     var body: some View {
+        NavigationView {
         Form {
             // mainInformation text entry fields.
             Section(header: Text("Recipe Info")) {
@@ -28,6 +31,7 @@ struct AddRecipeView: View {
             }.tint(Color.blue)
             Section(header: Text("Ingredients")) {
                 ForEach(userRecipe.ingredients.indices, id: \.self) {ingredientElement in
+                    Text("Ingredient \(ingredientElement)")
                     ForEachIngredient(ingredientElement: $userRecipe.ingredients[ingredientElement])
                 }
                 Button(action: {
@@ -44,9 +48,27 @@ struct AddRecipeView: View {
                 Button(action: {
                     userRecipe.directions.append(Direction(description: "Add your Recipe`s Directions here...", isOptional: false))
                 }, label: {
-                   Image(systemName: "plus")
+                    Image(systemName: "plus")
                 })
             }.tint(Color.blue)
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: {
+                    userData.addRecipe(userRecipe)
+                    userRecipe = Recipe(mainInformation: MainInformation(name: "", description: "", author: "", category: .breakfast), ingredients: [Ingredient(name: "", quantity: 0.0, unit: .none)], directions: [Direction(description: "Add your Recipe`s Directions here...", isOptional: false)])
+                    dismiss()
+                    
+                },
+                       label: {
+                    Text("Save")
+                        .font(.subheadline)
+                        .bold()
+                        .foregroundStyle(Color.blue)
+                })
+            }
+        }
+        .padding(.top, -25)
+    }
     }
 }
