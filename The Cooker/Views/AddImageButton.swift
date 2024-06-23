@@ -6,13 +6,22 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct AddImageButton: View {
+    @State private var SelectedImage: PhotosPickerItem?
+    @Binding var customImage: UIImage?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        PhotosPicker(selection: $SelectedImage, matching: .images) {
+            Image(systemName: "plus")
+        }
+        .onChange(of: SelectedImage) {
+            Task {
+            if let data = try? await SelectedImage?.loadTransferable(type: Data.self) {
+                customImage = UIImage(data: data)
+            }
+          }
+        }
     }
-}
-
-#Preview {
-    AddImageButton()
 }

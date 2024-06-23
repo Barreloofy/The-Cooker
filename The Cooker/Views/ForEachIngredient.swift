@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ForEachIngredient: View {
     @Binding var ingredientElement: Ingredient
+    @State var unitNotNone = false
     var body: some View {
         
             TextField("Ingredient Name", text: $ingredientElement.name)
@@ -17,7 +18,14 @@ struct ForEachIngredient: View {
                     Text(unit.rawValue)
                 }
             }
+            .onChange(of: ingredientElement.unit) {
+                if ingredientElement.unit != .none {
+                    unitNotNone.toggle()
+                }
+            }
+        if unitNotNone {
             TextField("Quantity", value: $ingredientElement.quantity, format: .number)
-            .keyboardType(.numbersAndPunctuation)
+                .keyboardType(.numbersAndPunctuation)
+        }
     }
 }

@@ -6,13 +6,14 @@
 //
 
 import Foundation
-
+import PhotosUI
 struct Recipe: Identifiable {
     
     var id = UUID()
     var mainInformation: MainInformation
     var ingredients: [Ingredient]
     var directions: [Direction]
+    var customImage: UIImage?
     
     init(mainInformation: MainInformation, ingredients:[Ingredient], directions:[Direction]) {
       self.mainInformation = mainInformation

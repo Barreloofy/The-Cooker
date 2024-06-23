@@ -9,8 +9,9 @@ import SwiftUI
 
 struct AddRecipeView: View {
     @ObservedObject var userData: UserData
+    @State private var showAlert = false
     @Environment (\.dismiss) private var dismiss
-    @State private var userRecipe = Recipe(mainInformation: MainInformation(name: "", description: "", author: "", category: .breakfast), ingredients: [Ingredient(name: "", quantity: 0.0, unit: .none)], directions: [Direction(description: "Add your Recipe`s Directions here...", isOptional: false)])
+    @State private var userRecipe = Recipe()
     enum isOptionalPicker: CaseIterable {
         case Yes
         case No
@@ -31,7 +32,7 @@ struct AddRecipeView: View {
             }.tint(Color.blue)
             Section(header: Text("Ingredients")) {
                 ForEach(userRecipe.ingredients.indices, id: \.self) {ingredientElement in
-                    Text("Ingredient \(ingredientElement)")
+                    Text("Ingredient \(ingredientElement+1)")
                     ForEachIngredient(ingredientElement: $userRecipe.ingredients[ingredientElement])
                 }
                 Button(action: {
@@ -51,14 +52,21 @@ struct AddRecipeView: View {
                     Image(systemName: "plus")
                 })
             }.tint(Color.blue)
+            
+            Section(header: Text("Add Image")) {
+                AddImageButton(customImage: $userRecipe.customImage)
+            }
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
-                    userData.addRecipe(userRecipe)
-                    userRecipe = Recipe(mainInformation: MainInformation(name: "", description: "", author: "", category: .breakfast), ingredients: [Ingredient(name: "", quantity: 0.0, unit: .none)], directions: [Direction(description: "Add your Recipe`s Directions here...", isOptional: false)])
-                    dismiss()
-                    
+                    if userRecipe.mainInformation.name != "" {
+                        userData.addRecipe(userRecipe)
+                        userRecipe = Recipe()
+                        dismiss()
+                    } else {
+                        showAlert.toggle()
+                    }
                 },
                        label: {
                     Text("Save")
@@ -69,6 +77,9 @@ struct AddRecipeView: View {
             }
         }
         .padding(.top, -25)
-    }
+        .alert("Provide a recipe name first!", isPresented: $showAlert) {
+            Button("OK", role: .cancel) {}
+        }
+      }
     }
 }
