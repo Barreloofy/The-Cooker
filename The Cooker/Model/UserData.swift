@@ -14,4 +14,7 @@ class UserData: ObservableObject {
     func addRecipe(_ recipe: Recipe) {
         recipeArray.append(recipe)
     }
+    func removeRecipe(_ recipe: Recipe) {
+        recipeArray.removeAll(where: {$0.id == recipe.id})
+    }
 }

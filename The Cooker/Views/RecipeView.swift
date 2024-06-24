@@ -16,6 +16,13 @@ struct RecipeView: View {
             RecipeNonListViews(currentRecipe: currentRecipe)
             RecipeListView(currentRecipe: currentRecipe, wasPressedIngredient: Array(repeating: false, count: currentRecipe.ingredients.count), wasPressedDirection: Array(repeating: false, count: currentRecipe.directions.count))
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: {}, label: {
+                    Image(systemName: "pencil.circle")
+                })
+            }
+        }
     
     }
 }

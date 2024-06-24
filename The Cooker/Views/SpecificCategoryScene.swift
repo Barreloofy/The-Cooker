@@ -17,18 +17,32 @@ struct ContentView: View {
         }
         return sortedRecipes
     }
-    @ObservedObject var userData: UserData
+    @State private var showAlert = false
+    @State var userData: UserData
     var category: MainInformation.Category
     var body: some View {
         List {
-            ForEach(RecipesSorter(userData.recipeArray)) {curentRecipe in
-              NavigationLink(destination: RecipeView(currentRecipe: curentRecipe)) {
-                Text(curentRecipe.mainInformation.name)
+            ForEach(RecipesSorter(userData.recipeArray)) {currentRecipe in
+              NavigationLink(destination: RecipeView(currentRecipe: currentRecipe)) {
+                Text(currentRecipe.mainInformation.name)
+                      .swipeActions(allowsFullSwipe: false) {
+                          Button("Delete") {
+                              showAlert.toggle()
+                          }
+                          .tint(.red)
+                      }
+                      .alert(isPresented: $showAlert) {
+                          Alert(title: Text("Delete Item"),
+                                message: Text("Are you sure you want to delete this item?"),
+                                primaryButton: .destructive(Text("Delete")) {
+                              userData.removeRecipe(currentRecipe)
+                                },
+                                secondaryButton: .cancel())
+                      }
             }
           }
         }
         .listStyle(PlainListStyle())
         .navigationTitle("\(category.rawValue)")
-        
     }
 }
