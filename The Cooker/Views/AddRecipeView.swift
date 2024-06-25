@@ -54,7 +54,7 @@ struct AddRecipeView: View {
                     }, label: {
                         Image(systemName: "plus")
                     })
-                }.tint(Color.blue)
+                }.tint(.blue)
                 // Image section
                 Section(header: Text("Add Image")) {
                     AddImageButton(customImage: $userRecipe.customImage)

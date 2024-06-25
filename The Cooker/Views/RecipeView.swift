@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct RecipeView: View {
-    var currentRecipe: Recipe
     
+    @ObservedObject var userData: UserData
+    var currentRecipe: Recipe
+    @State var showEditSheet = false
     var body: some View {
         
         VStack {
@@ -18,11 +20,15 @@ struct RecipeView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button(action: {}, label: {
+                Button(action: {
+                    showEditSheet.toggle()
+                }, label: {
                     Image(systemName: "pencil.circle")
                 })
+                .sheet(isPresented: $showEditSheet) {
+                    EditView(userData: userData, currentRecipe: currentRecipe)
+                }
             }
         }
-    
     }
 }

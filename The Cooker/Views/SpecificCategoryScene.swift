@@ -23,7 +23,7 @@ struct ContentView: View {
     var body: some View {
         List {
             ForEach(RecipesSorter(userData.recipeArray)) {currentRecipe in
-              NavigationLink(destination: RecipeView(currentRecipe: currentRecipe)) {
+              NavigationLink(destination: RecipeView(userData: userData, currentRecipe: currentRecipe)) {
                 Text(currentRecipe.mainInformation.name)
                       .swipeActions(allowsFullSwipe: false) {
                           Button("Delete") {

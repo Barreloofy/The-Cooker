@@ -17,4 +17,11 @@ class UserData: ObservableObject {
     func removeRecipe(_ recipe: Recipe) {
         recipeArray.removeAll(where: {$0.id == recipe.id})
     }
+    func findRecipeIndex(_ recipe: Recipe) -> Int? {
+        return recipeArray.firstIndex {$0.id == recipe.id }
+    }
+    func saveModifications(_ recipe: Recipe) {
+        guard let recipePosition = findRecipeIndex(recipe) else {return}
+        recipeArray[recipePosition] = recipe
+    }
 }

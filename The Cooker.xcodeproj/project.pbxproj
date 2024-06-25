@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29410A4F2C240E0F00DA7333 /* ForEachIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29410A4E2C240E0F00DA7333 /* ForEachIngredient.swift */; };
+		294991B52C2A34D000FECA1C /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294991B42C2A34D000FECA1C /* EditView.swift */; };
 		29696AD02C279C46003F4556 /* AddImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29696ACF2C279C46003F4556 /* AddImageButton.swift */; };
 		2981F7552C20EB62001D31E9 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981F7542C20EB62001D31E9 /* UserData.swift */; };
 		2981F7572C20EF77001D31E9 /* AddRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981F7562C20EF77001D31E9 /* AddRecipeView.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		29410A4E2C240E0F00DA7333 /* ForEachIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachIngredient.swift; sourceTree = "<group>"; };
+		294991B42C2A34D000FECA1C /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		29696ACF2C279C46003F4556 /* AddImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageButton.swift; sourceTree = "<group>"; };
 		2981F7542C20EB62001D31E9 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		2981F7562C20EF77001D31E9 /* AddRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				29D18AFC2C193DF00066A851 /* CategoryForEach.swift */,
 				29ED39C82C1265B8005ADD72 /* SpecificCategoryScene.swift */,
 				29D0CD742C14211100701166 /* RecipeView.swift */,
+				294991B42C2A34D000FECA1C /* EditView.swift */,
 				29BF19C62C1E5F2400E00598 /* RecipeNonListViews.swift */,
 				29BF19C82C1E621500E00598 /* RecipeListView.swift */,
 			);
@@ -190,6 +193,7 @@
 				29410A4F2C240E0F00DA7333 /* ForEachIngredient.swift in Sources */,
 				2981F7572C20EF77001D31E9 /* AddRecipeView.swift in Sources */,
 				29ED39C92C1265B8005ADD72 /* SpecificCategoryScene.swift in Sources */,
+				294991B52C2A34D000FECA1C /* EditView.swift in Sources */,
 				29D0CD752C14211100701166 /* RecipeView.swift in Sources */,
 				29BF19C72C1E5F2400E00598 /* RecipeNonListViews.swift in Sources */,
 				29BF19C92C1E621500E00598 /* RecipeListView.swift in Sources */,
