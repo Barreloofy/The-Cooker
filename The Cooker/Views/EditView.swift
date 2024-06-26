@@ -25,7 +25,7 @@ struct EditView: View {
                 }
             }
             Section(header: Text("Ingredients")) {
-                ForEach(currentRecipe.ingredients.indices) {index in
+                ForEach(currentRecipe.ingredients.indices, id: \.self) {index in
                     Text("Ingredient: \(index+1)")
                     TextField(("\(currentRecipe.ingredients[index].name)"), text: $currentRecipe.ingredients[index].name)
                     Picker("Unit", selection: $currentRecipe.ingredients[index].unit) {
@@ -44,7 +44,7 @@ struct EditView: View {
                 }
             }
             Section(header: Text("Directions")) {
-                ForEach(currentRecipe.directions.indices) {index in
+                ForEach(currentRecipe.directions.indices, id: \.self) {index in
                     Text("Step: \(index+1)")
                     ZStack {
                         TextEditor(text: $currentRecipe.directions[index].description)

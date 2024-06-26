@@ -15,7 +15,7 @@ struct RecipeListView: View {
         List {
             Section(header: Text("ingredients")){
                 
-                ForEach(currentRecipe.ingredients.indices) {ingredientIndex in
+                ForEach(currentRecipe.ingredients.indices, id: \.self) {ingredientIndex in
                     Button(action: {
                         wasPressedIngredient[ingredientIndex].toggle()
                     }, label: {
@@ -29,7 +29,7 @@ struct RecipeListView: View {
             
             }
             Section(header: Text("Directions")){
-                ForEach(currentRecipe.directions.indices) {directionIndex in
+                ForEach(currentRecipe.directions.indices, id: \.self) {directionIndex in
                     Button(action: {
                         wasPressedDirection[directionIndex].toggle()
                     }, label: {

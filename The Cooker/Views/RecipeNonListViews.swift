@@ -10,13 +10,21 @@ import SwiftUI
 struct RecipeNonListViews: View {
     var currentRecipe: Recipe
     var body: some View {
-        Image(currentRecipe.mainInformation.name)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: UIScreen.main.bounds.width, height: 200)
-            .clipped()
-            .padding(.top, -150)
-        
+        if let recipeImage = currentRecipe.customImage {
+            Image(uiImage: recipeImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: UIScreen.main.bounds.width, height: 200)
+                .clipped()
+                .padding(.top, -150)
+        } else {
+            Image(currentRecipe.mainInformation.name)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: UIScreen.main.bounds.width, height: 200)
+                .clipped()
+                .padding(.top, -150)
+        }
         Text(currentRecipe.mainInformation.name)
             .font(.title)
             .bold()
