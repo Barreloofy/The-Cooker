@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct RecipeCategory: View {
+struct RecipeCategoryScene: View {
     @ObservedObject var userData = UserData()
     @State private var isPresenting: Bool = false
     var body: some View {
         NavigationView {
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
-                CategoryForEach(userData: userData)
+                CategoryForEachScene(userData: userData)
             }
             .padding(10)
             .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .top)

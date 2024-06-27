@@ -11,7 +11,7 @@ import SwiftUI
     struct The_CookerApp: App {
     var body: some Scene {
         WindowGroup {
-            RecipeCategory()
+            RecipeCategoryScene()
         }
     }
 }

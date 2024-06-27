@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SpecificCategoryScene: View {
     private func RecipesSorter(_ source: [Recipe] = Recipe.testRecipes) -> [Recipe] {
         var sortedRecipes = [Recipe]()
         for recipe in source {
@@ -18,12 +18,12 @@ struct ContentView: View {
         return sortedRecipes
     }
     @State private var showAlert = false
-    @State var userData: UserData
+    @ObservedObject var userData: UserData
     var category: MainInformation.Category
     var body: some View {
         List {
             ForEach(RecipesSorter(userData.recipeArray)) {currentRecipe in
-              NavigationLink(destination: RecipeView(userData: userData, currentRecipe: currentRecipe)) {
+              NavigationLink(destination: RecipeViewScene(userData: userData, currentRecipe: currentRecipe)) {
                 Text(currentRecipe.mainInformation.name)
                       .swipeActions(allowsFullSwipe: false) {
                           Button("Delete") {

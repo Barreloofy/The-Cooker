@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipeView: View {
+struct RecipeViewScene: View {
     
     @ObservedObject var userData: UserData
     var currentRecipe: Recipe
@@ -26,7 +26,7 @@ struct RecipeView: View {
                     Image(systemName: "pencil.circle")
                 })
                 .sheet(isPresented: $showEditSheet) {
-                    EditView(userData: userData, currentRecipe: currentRecipe)
+                    EditView(showEditSheet: $showEditSheet, userData: userData, currentRecipe: currentRecipe)
                 }
             }
         }

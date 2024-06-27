@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditView: View {
     
-    
+    @Binding var showEditSheet: Bool
     @ObservedObject var userData: UserData
     @State var currentRecipe: Recipe
     var body: some View {
@@ -60,6 +60,7 @@ struct EditView: View {
             ToolbarItem {
                 Button("Save", action: {
                     userData.saveModifications(currentRecipe)
+                    showEditSheet.toggle()
                 })
             }
         }
