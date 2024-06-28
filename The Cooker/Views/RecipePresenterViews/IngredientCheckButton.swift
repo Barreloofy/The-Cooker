@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct IngredientCheckButton: View {
+    var ingredient: Ingredient
+    @State var wasPressedIngredient = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Button(action: {
+            wasPressedIngredient.toggle()
+        }, label: {
+            if wasPressedIngredient {
+                Label("\(ingredient.description)", systemImage: "circle.circle.fill").opacity(0.5).foregroundColor(.gray)
+            } else {
+                Label("\(ingredient.description)", systemImage: "circle")
+            }
+        })
     }
-}
-
-#Preview {
-    IngredientCheckButton()
 }

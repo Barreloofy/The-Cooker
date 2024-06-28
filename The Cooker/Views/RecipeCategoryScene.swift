@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeCategoryScene: View {
-    @ObservedObject var userData = UserData()
+    @StateObject var userData = UserData()
     @State private var isPresenting: Bool = false
     var body: some View {
         NavigationView {

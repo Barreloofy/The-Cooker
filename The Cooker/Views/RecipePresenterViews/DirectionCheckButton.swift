@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct DirectionCheckButton: View {
+    
+    var direction: Direction
+    @State var wasPressedDirection = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Button(action: {
+            wasPressedDirection.toggle()
+        }, label: {
+            if wasPressedDirection {
+                if direction.isOptional {
+                    Label("(Optional) \(direction.description)", systemImage: "circle.circle.fill").opacity(0.5).foregroundColor(.gray)
+                        .padding(5)
+                } else {
+                    Label("\(direction.description)", systemImage: "circle.circle.fill").opacity(0.5).foregroundColor(.gray)
+                        .padding(5)
+                }
+            } else {
+                if direction.isOptional {
+                    Label("(Optional) \(direction.description)", systemImage: "circle")
+                } else {
+                    Label("\(direction.description)", systemImage: "circle")
+                }
+            }
+        })
     }
-}
-
-#Preview {
-    DirectionCheckButton()
 }

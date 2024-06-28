@@ -16,7 +16,7 @@ struct RecipeViewScene: View {
         
         VStack {
             RecipeNonListViews(currentRecipe: currentRecipe)
-            RecipeListView(currentRecipe: currentRecipe, wasPressedIngredient: Array(repeating: false, count: currentRecipe.ingredients.count), wasPressedDirection: Array(repeating: false, count: currentRecipe.directions.count))
+            RecipeListView(currentRecipe: currentRecipe)
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

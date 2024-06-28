@@ -23,7 +23,7 @@ struct Recipe: Identifiable {
     }
     
     init() {
-      self.init(mainInformation: MainInformation(name: "", description: "", author: "", category: .breakfast),
+      self.init(mainInformation: MainInformation(name: "", description: "Description", author: "", category: .breakfast),
                 ingredients: [],
                 directions: [])
     }
@@ -74,12 +74,29 @@ struct Ingredient: Identifiable {
        
         var singularName: String {String(rawValue.dropLast())}
     }
+    init(name: String, quantity: Double, unit: Unit) {
+        self.name = name
+        self.quantity = quantity
+        self.unit = unit
+    }
+    
+    init() {
+        self.init(name: "", quantity: 0.0, unit: .none)
+    }
 }
 
 struct Direction: Identifiable {
     var id = UUID()
     var description: String
     var isOptional: Bool
+    
+    init(description: String, isOptional: Bool) {
+        self.description = description
+        self.isOptional = isOptional
+    }
+    init() {
+        self.init(description: "Directions", isOptional: false)
+    }
 }
 
 extension Recipe {

@@ -16,8 +16,16 @@ struct EditView: View {
         NavigationView {
         Form {
             Section(header: Text("Main Information")) {
-                TextField("\(currentRecipe.mainInformation.name)", text: $currentRecipe.mainInformation.name)
-                TextField("\(currentRecipe.mainInformation.author)", text: $currentRecipe.mainInformation.author)
+                if currentRecipe.mainInformation.name != "" {
+                    TextField("\(currentRecipe.mainInformation.name)", text: $currentRecipe.mainInformation.name)
+                } else {
+                    TextField("Recipe Name", text: $currentRecipe.mainInformation.name)
+                }
+                if currentRecipe.mainInformation.author != "" {
+                    TextField("\(currentRecipe.mainInformation.author)", text: $currentRecipe.mainInformation.author)
+                } else {
+                    TextField("Author", text: $currentRecipe.mainInformation.author)
+                }
                 ZStack {
                     TextEditor(text: $currentRecipe.mainInformation.description)
                     Text(currentRecipe.mainInformation.description)
@@ -25,6 +33,7 @@ struct EditView: View {
                 }
             }
             Section(header: Text("Ingredients")) {
+                
                 ForEach(currentRecipe.ingredients.indices, id: \.self) {index in
                     Text("Ingredient: \(index+1)")
                     TextField(("\(currentRecipe.ingredients[index].name)"), text: $currentRecipe.ingredients[index].name)
@@ -42,6 +51,11 @@ struct EditView: View {
                             .keyboardType(.numbersAndPunctuation)
                     }
                 }
+                Button(action: {
+                    currentRecipe.ingredients.append(Ingredient())
+                }, label: {
+                    Image(systemName: "plus")
+                })
             }
             Section(header: Text("Directions")) {
                 ForEach(currentRecipe.directions.indices, id: \.self) {index in
@@ -53,6 +67,12 @@ struct EditView: View {
                     }
                     Toggle("Optional Step?", isOn: $currentRecipe.directions[index].isOptional)
                 }
+                Button(action: {
+                    currentRecipe.directions.append(Direction())
+                },
+                   label: {
+                    Image(systemName: "plus")
+                })
             }
         }
         .tint(.black)
