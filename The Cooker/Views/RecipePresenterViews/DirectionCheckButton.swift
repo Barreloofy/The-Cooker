@@ -19,10 +19,8 @@ struct DirectionCheckButton: View {
             if wasPressedDirection {
                 if direction.isOptional {
                     Label("(Optional) \(direction.description)", systemImage: "circle.circle.fill").opacity(0.5).foregroundColor(.gray)
-                        .padding(5)
                 } else {
                     Label("\(direction.description)", systemImage: "circle.circle.fill").opacity(0.5).foregroundColor(.gray)
-                        .padding(5)
                 }
             } else {
                 if direction.isOptional {

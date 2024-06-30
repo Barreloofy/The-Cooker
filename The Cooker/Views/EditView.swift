@@ -31,25 +31,40 @@ struct EditView: View {
                     Text(currentRecipe.mainInformation.description)
                         .opacity(0)
                 }
+                .padding(.leading, -2)
             }
             Section(header: Text("Ingredients")) {
                 
                 ForEach(currentRecipe.ingredients.indices, id: \.self) {index in
-                    Text("Ingredient: \(index+1)")
-                    TextField(("\(currentRecipe.ingredients[index].name)"), text: $currentRecipe.ingredients[index].name)
-                    Picker("Unit", selection: $currentRecipe.ingredients[index].unit) {
-                        Text("Cups").tag(Ingredient.Unit.cups)
-                        Text("Gram").tag(Ingredient.Unit.g)
-                        Text("Ounces").tag(Ingredient.Unit.oz)
-                        Text("Tablespoons").tag(Ingredient.Unit.tbs)
-                        Text("Teaspoons").tag(Ingredient.Unit.tsp)
-                        Text("No Unit").tag(Ingredient.Unit.none)
+                    var combinedText: String {
+                        return "\(currentRecipe.ingredients[index].quantity) \(currentRecipe.ingredients[index].unit.rawValue)"
                     }
-                    @State var unitNotNone = currentRecipe.ingredients[index].unit != .none
-                    if unitNotNone {
-                        TextField("Quantity", value: $currentRecipe.ingredients[index].quantity, format: .number)
-                            .keyboardType(.numbersAndPunctuation)
+                    
+                    Text("Ingredient: \(index+1)").font(.subheadline).bold()
+                    HStack {
+                        Text("Recipe Name: ")
+                        TextField(("\(currentRecipe.ingredients[index].name)"), text: $currentRecipe.ingredients[index].name)
                     }
+                        Picker("Unit", selection: $currentRecipe.ingredients[index].unit) {
+                            Text("Cups").tag(Ingredient.Unit.cups)
+                            Text("Gram").tag(Ingredient.Unit.g)
+                            Text("Ounces").tag(Ingredient.Unit.oz)
+                            Text("Tablespoons").tag(Ingredient.Unit.tbs)
+                            Text("Teaspoons").tag(Ingredient.Unit.tsp)
+                            Text("No Unit").tag(Ingredient.Unit.none)
+                        }
+                        @State var unitNotNone = currentRecipe.ingredients[index].unit != .none
+                        if unitNotNone {
+                            HStack {
+                                Text("Quantity: ")
+                                ZStack {
+                                TextField("Quantity", value: $currentRecipe.ingredients[index].quantity, format: .number)
+                                    .keyboardType(.numbersAndPunctuation)
+                                    //.opacity(0)
+                                Text(combinedText)
+                              }
+                            }
+                        }
                 }
                 Button(action: {
                     currentRecipe.ingredients.append(Ingredient())
@@ -59,7 +74,7 @@ struct EditView: View {
             }
             Section(header: Text("Directions")) {
                 ForEach(currentRecipe.directions.indices, id: \.self) {index in
-                    Text("Step: \(index+1)")
+                    Text("Step: \(index+1)").font(.subheadline).bold()
                     ZStack {
                         TextEditor(text: $currentRecipe.directions[index].description)
                         Text(currentRecipe.directions[index].description)

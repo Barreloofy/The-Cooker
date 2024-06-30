@@ -13,10 +13,12 @@ struct RecipeViewScene: View {
     var currentRecipe: Recipe
     @State var showEditSheet = false
     var body: some View {
-        
-        VStack {
-            RecipeNonListViews(currentRecipe: currentRecipe)
-            RecipeListView(currentRecipe: currentRecipe)
+        ZStack {
+            Color(.secondarySystemBackground)
+            VStack {
+                RecipeNonListViews(currentRecipe: currentRecipe)
+                RecipeListView(currentRecipe: currentRecipe)
+            }
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

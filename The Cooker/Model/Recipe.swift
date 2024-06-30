@@ -70,6 +70,7 @@ struct Ingredient: Identifiable {
         case cups = "Cups"
         case tbs = "Tablespoons"
         case tsp = "Teaspoons"
+        case ml = "ml"
         case none = "No Unit"
        
         var singularName: String {String(rawValue.dropLast())}

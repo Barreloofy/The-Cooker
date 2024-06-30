@@ -15,16 +15,17 @@ struct RecipeListView: View {
             Section(header: Text("ingredients")){
                 
                 ForEach(currentRecipe.ingredients.indices, id: \.self) {ingredientIndex in
-                    IngredientCheckButton(ingredient: currentRecipe.ingredients[ingredientIndex])
+                    let ingredient = currentRecipe.ingredients[ingredientIndex]
+                    IngredientCheckButton(ingredient: ingredient)
                 }
-            
             }
             Section(header: Text("Directions")){
                 ForEach(currentRecipe.directions.indices, id: \.self) {directionIndex in
-                    DirectionCheckButton(direction: currentRecipe.directions[directionIndex])
+                    let direction = currentRecipe.directions[directionIndex]
+                    DirectionCheckButton(direction: direction)
                 }
             }
         }
-        .listStyle(PlainListStyle())
+        .foregroundStyle(Color.black)
     }
 }
