@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct DirectionPresenterView: View {
+    
+    @Binding var direction: Direction
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                ZStack {
+                    TextEditor(text: $direction.description)
+                    Text("                                                                                     \(direction.description)").opacity(0)
+                }
+                Toggle("Optional Step?", isOn: $direction.isOptional)
+            }
+        }
     }
-}
-
-#Preview {
-    DirectionPresenterView()
 }

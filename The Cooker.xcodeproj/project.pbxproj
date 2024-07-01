@@ -10,6 +10,8 @@
 		29410A4F2C240E0F00DA7333 /* ForEachIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29410A4E2C240E0F00DA7333 /* ForEachIngredient.swift */; };
 		294991B52C2A34D000FECA1C /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294991B42C2A34D000FECA1C /* EditView.swift */; };
 		29696AD02C279C46003F4556 /* AddImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29696ACF2C279C46003F4556 /* AddImageButton.swift */; };
+		297E0AD22C33307C00E979ED /* IngredientPresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297E0AD12C33307C00E979ED /* IngredientPresenterView.swift */; };
+		297E0AD42C333EFF00E979ED /* DirectionPresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297E0AD32C333EFF00E979ED /* DirectionPresenterView.swift */; };
 		2981F7552C20EB62001D31E9 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981F7542C20EB62001D31E9 /* UserData.swift */; };
 		2981F7572C20EF77001D31E9 /* AddRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2981F7562C20EF77001D31E9 /* AddRecipeView.swift */; };
 		29AAF9772C2E9268002EDE0C /* IngredientCheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AAF9762C2E9268002EDE0C /* IngredientCheckButton.swift */; };
@@ -30,6 +32,8 @@
 		29410A4E2C240E0F00DA7333 /* ForEachIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachIngredient.swift; sourceTree = "<group>"; };
 		294991B42C2A34D000FECA1C /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		29696ACF2C279C46003F4556 /* AddImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageButton.swift; sourceTree = "<group>"; };
+		297E0AD12C33307C00E979ED /* IngredientPresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientPresenterView.swift; sourceTree = "<group>"; };
+		297E0AD32C333EFF00E979ED /* DirectionPresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionPresenterView.swift; sourceTree = "<group>"; };
 		2981F7542C20EB62001D31E9 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		2981F7562C20EF77001D31E9 /* AddRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
 		29AAF9762C2E9268002EDE0C /* IngredientCheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCheckButton.swift; sourceTree = "<group>"; };
@@ -58,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		297E0AD02C33300900E979ED /* SharedViews */ = {
+			isa = PBXGroup;
+			children = (
+				297E0AD12C33307C00E979ED /* IngredientPresenterView.swift */,
+				297E0AD32C333EFF00E979ED /* DirectionPresenterView.swift */,
+			);
+			path = SharedViews;
+			sourceTree = "<group>";
+		};
 		29AAF9742C2E2025002EDE0C /* Custom Recipe */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +99,7 @@
 				29AAF9742C2E2025002EDE0C /* Custom Recipe */,
 				29D18AFC2C193DF00066A851 /* CategoryForEachScene.swift */,
 				29ED39C82C1265B8005ADD72 /* SpecificCategoryScene.swift */,
+				297E0AD02C33300900E979ED /* SharedViews */,
 				29D0CD742C14211100701166 /* RecipeViewScene.swift */,
 				29AAF9752C2E237C002EDE0C /* RecipePresenterViews */,
 				294991B42C2A34D000FECA1C /* EditView.swift */,
@@ -212,7 +226,9 @@
 				29ED39D52C126848005ADD72 /* Recipe.swift in Sources */,
 				29F5D7492C16D4CC00DF04CD /* RecipeCategoryScene.swift in Sources */,
 				2981F7552C20EB62001D31E9 /* UserData.swift in Sources */,
+				297E0AD22C33307C00E979ED /* IngredientPresenterView.swift in Sources */,
 				29410A4F2C240E0F00DA7333 /* ForEachIngredient.swift in Sources */,
+				297E0AD42C333EFF00E979ED /* DirectionPresenterView.swift in Sources */,
 				29AAF9792C2E941D002EDE0C /* DirectionCheckButton.swift in Sources */,
 				29AAF9772C2E9268002EDE0C /* IngredientCheckButton.swift in Sources */,
 				2981F7572C20EF77001D31E9 /* AddRecipeView.swift in Sources */,

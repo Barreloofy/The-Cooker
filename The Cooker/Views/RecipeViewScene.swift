@@ -14,7 +14,7 @@ struct RecipeViewScene: View {
     @State var showEditSheet = false
     var body: some View {
         ZStack {
-            Color(.secondarySystemBackground)
+            UserData.mainColor
             VStack {
                 RecipeNonListViews(currentRecipe: currentRecipe)
                 RecipeListView(currentRecipe: currentRecipe)

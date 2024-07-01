@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct IngredientPresenterView: View {
+    
+    @Binding var ingredient: Ingredient
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                HStack {
+                    Text("Name:")
+                    TextField("No Name", text:$ingredient.name)
+                }
+                Picker("Unit", selection: $ingredient.unit) {
+                    ForEach(Ingredient.Unit.allCases, id: \.self) {unit in
+                        Text("\(unit.rawValue)")
+                    }
+                }
+                HStack {
+                    Text("Quantity:")
+                    TextField("No Quantity", value: $ingredient.quantity, format: .number)
+                        .keyboardType(.numbersAndPunctuation)
+                }
+            }
+        }
+        .navigationTitle("Ingredient")
     }
-}
-
-#Preview {
-    IngredientPresenterView()
 }

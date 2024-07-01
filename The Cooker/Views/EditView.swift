@@ -34,37 +34,16 @@ struct EditView: View {
                 .padding(.leading, -2)
             }
             Section(header: Text("Ingredients")) {
-                
                 ForEach(currentRecipe.ingredients.indices, id: \.self) {index in
-                    var combinedText: String {
-                        return "\(currentRecipe.ingredients[index].quantity) \(currentRecipe.ingredients[index].unit.rawValue)"
+                    NavigationLink("\(currentRecipe.ingredients[index].name)") {
+                        IngredientPresenterView(ingredient: $currentRecipe.ingredients[index])
                     }
-                    
-                    Text("Ingredient: \(index+1)").font(.subheadline).bold()
-                    HStack {
-                        Text("Recipe Name: ")
-                        TextField(("\(currentRecipe.ingredients[index].name)"), text: $currentRecipe.ingredients[index].name)
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        Button("Delete") {
+                            currentRecipe.ingredients.remove(at: index)
+                        }
                     }
-                        Picker("Unit", selection: $currentRecipe.ingredients[index].unit) {
-                            Text("Cups").tag(Ingredient.Unit.cups)
-                            Text("Gram").tag(Ingredient.Unit.g)
-                            Text("Ounces").tag(Ingredient.Unit.oz)
-                            Text("Tablespoons").tag(Ingredient.Unit.tbs)
-                            Text("Teaspoons").tag(Ingredient.Unit.tsp)
-                            Text("No Unit").tag(Ingredient.Unit.none)
-                        }
-                        @State var unitNotNone = currentRecipe.ingredients[index].unit != .none
-                        if unitNotNone {
-                            HStack {
-                                Text("Quantity: ")
-                                ZStack {
-                                TextField("Quantity", value: $currentRecipe.ingredients[index].quantity, format: .number)
-                                    .keyboardType(.numbersAndPunctuation)
-                                    //.opacity(0)
-                                Text(combinedText)
-                              }
-                            }
-                        }
+                    .tint(.red)
                 }
                 Button(action: {
                     currentRecipe.ingredients.append(Ingredient())
@@ -74,13 +53,15 @@ struct EditView: View {
             }
             Section(header: Text("Directions")) {
                 ForEach(currentRecipe.directions.indices, id: \.self) {index in
-                    Text("Step: \(index+1)").font(.subheadline).bold()
-                    ZStack {
-                        TextEditor(text: $currentRecipe.directions[index].description)
-                        Text(currentRecipe.directions[index].description)
-                            .opacity(0)
+                    NavigationLink("\(currentRecipe.directions[index].description)") {
+                        DirectionPresenterView(direction: $currentRecipe.directions[index])
                     }
-                    Toggle("Optional Step?", isOn: $currentRecipe.directions[index].isOptional)
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        Button("Delete") {
+                            currentRecipe.directions.remove(at: index)
+                        }
+                    }
+                    .tint(.red)
                 }
                 Button(action: {
                     currentRecipe.directions.append(Direction())

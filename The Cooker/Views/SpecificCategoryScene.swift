@@ -23,7 +23,7 @@ struct SpecificCategoryScene: View {
     var body: some View {
         List {
             ForEach(RecipesSorter(userData.recipeArray)) {currentRecipe in
-              NavigationLink(destination: RecipeViewScene(userData: userData, currentRecipe: currentRecipe)) {
+                NavigationLink(destination: RecipeViewScene(userData: userData, currentRecipe: currentRecipe)) {
                   Text(currentRecipe.mainInformation.name)
                       .swipeActions(allowsFullSwipe: false) {
                           Button("Delete") {
@@ -41,7 +41,10 @@ struct SpecificCategoryScene: View {
                       }
             }
           }
+            .listRowBackground(UserData.mainColor)
         }
+        .scrollContentBackground(.hidden)
+        .background(UserData.mainColor)
         .listStyle(PlainListStyle())
         .navigationTitle("\(category.rawValue)")
     }

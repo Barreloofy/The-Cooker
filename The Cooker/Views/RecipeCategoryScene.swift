@@ -12,6 +12,8 @@ struct RecipeCategoryScene: View {
     @State private var isPresenting: Bool = false
     var body: some View {
         NavigationView {
+            ZStack {
+                UserData.mainColor.ignoresSafeArea()
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
                 CategoryForEachScene(userData: userData)
             }
@@ -35,6 +37,7 @@ struct RecipeCategoryScene: View {
                     .padding(.bottom, -3)
                 }
             }
+        }
       }
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $isPresenting) {
