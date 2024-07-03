@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class UserData: ObservableObject {
+class recipeData: ObservableObject {
     @Published private(set) var recipeArray = Recipe.testRecipes
     static let mainColor = Color(.secondarySystemBackground)
     func addRecipe(_ recipe: Recipe) {
