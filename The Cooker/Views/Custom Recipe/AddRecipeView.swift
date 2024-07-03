@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct AddRecipeView: View {
-    @ObservedObject var userData: UserData
+    
+    @EnvironmentObject private var recipeData: RecipeData
+    
     @State private var showAlert = false
     @Environment (\.dismiss) private var dismiss
     @State private var userRecipe = Recipe()
@@ -65,7 +67,7 @@ struct AddRecipeView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
                         if userRecipe.mainInformation.name != "" {
-                            userData.addRecipe(userRecipe)
+                            recipeData.addRecipe(userRecipe)
                             userRecipe = Recipe()
                             dismiss()
                         } else {

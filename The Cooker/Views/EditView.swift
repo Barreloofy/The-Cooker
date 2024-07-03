@@ -9,8 +9,8 @@ import SwiftUI
 
 struct EditView: View {
     
+    @EnvironmentObject private var recipeData: RecipeData
     @Binding var showEditSheet: Bool
-    @ObservedObject var userData: UserData
     @State var currentRecipe: Recipe
     var body: some View {
         NavigationView {
@@ -75,7 +75,7 @@ struct EditView: View {
         .toolbar {
             ToolbarItem {
                 Button("Save", action: {
-                    userData.saveModifications(currentRecipe)
+                    recipeData.saveModifications(currentRecipe)
                     showEditSheet.toggle()
                 })
             }

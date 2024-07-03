@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
     struct The_CookerApp: App {
+        
+    @StateObject private var recipeData = RecipeData()
     var body: some Scene {
         WindowGroup {
             RecipeCategoryScene()
+                .environmentObject(recipeData)
         }
     }
 }

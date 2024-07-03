@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct AppColor: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    AppColor()
+struct AppColor {
+    static let background = Color(.secondarySystemBackground)
 }

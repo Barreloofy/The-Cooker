@@ -8,22 +8,14 @@
 import SwiftUI
 
 struct SpecificCategoryScene: View {
-    private func RecipesSorter(_ source: [Recipe] = Recipe.testRecipes) -> [Recipe] {
-        var sortedRecipes = [Recipe]()
-        for recipe in source {
-            if recipe.mainInformation.category == category {
-                sortedRecipes.append(recipe)
-            }
-        }
-        return sortedRecipes
-    }
+    
+    @EnvironmentObject private var recipeData: RecipeData
     @State private var showAlert = false
-    @ObservedObject var userData: UserData
     var category: MainInformation.Category
     var body: some View {
         List {
-            ForEach(RecipesSorter(userData.recipeArray)) {currentRecipe in
-                NavigationLink(destination: RecipeViewScene(userData: userData, currentRecipe: currentRecipe)) {
+            ForEach(recipeData.recipeSorter(category)) {currentRecipe in
+                NavigationLink(destination: RecipeViewScene(currentRecipe: currentRecipe)) {
                   Text(currentRecipe.mainInformation.name)
                       .swipeActions(allowsFullSwipe: false) {
                           Button("Delete") {
@@ -35,16 +27,16 @@ struct SpecificCategoryScene: View {
                           Alert(title: Text("Delete Item"),
                                 message: Text("Are you sure you want to delete this item?"),
                                 primaryButton: .destructive(Text("Delete")) {
-                              userData.removeRecipe(currentRecipe)
+                              recipeData.removeRecipe(currentRecipe)
                                 },
                                 secondaryButton: .cancel())
                       }
             }
           }
-            .listRowBackground(UserData.mainColor)
+            .listRowBackground(AppColor.background)
         }
         .scrollContentBackground(.hidden)
-        .background(UserData.mainColor)
+        .background(AppColor.background)
         .listStyle(PlainListStyle())
         .navigationTitle("\(category.rawValue)")
     }

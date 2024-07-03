@@ -9,12 +9,11 @@ import SwiftUI
 
 struct RecipeViewScene: View {
     
-    @ObservedObject var userData: UserData
     var currentRecipe: Recipe
     @State var showEditSheet = false
     var body: some View {
         ZStack {
-            UserData.mainColor
+            AppColor.background.ignoresSafeArea()
             VStack {
                 RecipeNonListViews(currentRecipe: currentRecipe)
                 RecipeListView(currentRecipe: currentRecipe)
@@ -28,7 +27,7 @@ struct RecipeViewScene: View {
                     Image(systemName: "pencil.circle")
                 })
                 .sheet(isPresented: $showEditSheet) {
-                    EditView(showEditSheet: $showEditSheet, userData: userData, currentRecipe: currentRecipe)
+                    EditView(showEditSheet: $showEditSheet, currentRecipe: currentRecipe)
                 }
             }
         }

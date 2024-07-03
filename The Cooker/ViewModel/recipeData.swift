@@ -8,9 +8,19 @@
 import Foundation
 import SwiftUI
 
-class recipeData: ObservableObject {
+class RecipeData: ObservableObject {
     @Published private(set) var recipeArray = Recipe.testRecipes
-    static let mainColor = Color(.secondarySystemBackground)
+
+    func recipeSorter(_ category: MainInformation.Category) -> [Recipe] {
+        var filteredRecipes = [Recipe]()
+        for recipe in recipeArray {
+            if recipe.mainInformation.category == category {
+                filteredRecipes.append(recipe)
+            }
+        }
+        return filteredRecipes
+    }
+    
     func addRecipe(_ recipe: Recipe) {
         recipeArray.append(recipe)
     }

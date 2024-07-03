@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct CategoryForEachScene: View {
-    @ObservedObject var userData: UserData
+    
+    @EnvironmentObject private var recipeData: RecipeData
     var body: some View {
         ForEach(MainInformation.Category.allCases, id: \.self) {category in
-            NavigationLink(destination: SpecificCategoryScene(userData: userData,category: category)) {
+            NavigationLink(destination: SpecificCategoryScene(category: category)) {
             ZStack {
                 Image(category.rawValue)
                     .resizable()

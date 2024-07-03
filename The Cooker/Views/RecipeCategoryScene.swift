@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct RecipeCategoryScene: View {
-    @StateObject var userData = UserData()
+    
     @State private var isPresenting: Bool = false
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
-                UserData.mainColor.ignoresSafeArea()
+                AppColor.background.ignoresSafeArea()
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
-                CategoryForEachScene(userData: userData)
+                CategoryForEachScene()
             }
             .padding(10)
             .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .top)
@@ -41,7 +41,7 @@ struct RecipeCategoryScene: View {
       }
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $isPresenting) {
-            AddRecipeView(userData: userData)
+            AddRecipeView()
         }
     }
 }
