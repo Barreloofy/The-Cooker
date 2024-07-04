@@ -10,7 +10,6 @@ import SwiftUI
 struct AddRecipeView: View {
     
     @EnvironmentObject private var recipeData: RecipeData
-    
     @State private var showAlert = false
     @Environment (\.dismiss) private var dismiss
     @State private var userRecipe = Recipe()
@@ -39,6 +38,9 @@ struct AddRecipeView: View {
                             Text("\(userRecipe.ingredients[ingredientIndex].name == "" ? "New Ingredient" : userRecipe.ingredients[ingredientIndex].name)")
                         }
                     }
+                    .onMove(perform: { indices, newOffset in
+                        userRecipe.ingredients.move(fromOffsets: indices, toOffset: newOffset)
+                    })
                     Button(action: {
                         userRecipe.ingredients.append(Ingredient(name: "", quantity: 0.0, unit: .none))
                     }, label: {
@@ -52,6 +54,9 @@ struct AddRecipeView: View {
                             Text(userRecipe.directions[directionIndex].description)
                         }
                     }
+                    .onMove(perform: { indices, newOffset in
+                        userRecipe.directions.move(fromOffsets: indices, toOffset: newOffset)
+                    })
                     Button(action: {
                         userRecipe.directions.append(Direction(description: "Add your Recipe`s Directions here...", isOptional: false))
                     }, label: {

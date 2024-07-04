@@ -33,6 +33,7 @@ struct EditView: View {
                     }
                     .padding(.leading, -2)
                 }
+                // Ingredients Section
                 Section(header: Text("Ingredients")) {
                     ForEach(currentRecipe.ingredients.indices, id: \.self) {index in
                         NavigationLink("\(currentRecipe.ingredients[index].name)") {
@@ -45,12 +46,16 @@ struct EditView: View {
                         }
                         .tint(.red)
                     }
+                    .onMove(perform: { indices, newOffset in
+                        currentRecipe.ingredients.move(fromOffsets: indices, toOffset: newOffset)
+                    })
                     Button(action: {
                         currentRecipe.ingredients.append(Ingredient())
                     }, label: {
                         Image(systemName: "plus")
                     })
                 }
+                // Directions Section
                 Section(header: Text("Directions")) {
                     ForEach(currentRecipe.directions.indices, id: \.self) {index in
                         NavigationLink("\(currentRecipe.directions[index].description)") {
@@ -63,6 +68,9 @@ struct EditView: View {
                         }
                         .tint(.red)
                     }
+                    .onMove(perform: { indices, newOffset in
+                        currentRecipe.directions.move(fromOffsets: indices, toOffset: newOffset)
+                    })
                     Button(action: {
                         currentRecipe.directions.append(Direction())
                     },
