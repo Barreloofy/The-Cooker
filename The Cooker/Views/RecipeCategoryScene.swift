@@ -39,7 +39,6 @@ struct RecipeCategoryScene: View {
             }
         }
       }
-        .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $isPresenting) {
             AddRecipeView()
         }

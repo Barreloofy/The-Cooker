@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeViewScene: View {
     
     var currentRecipe: Recipe
-    @State var showEditSheet = false
+    @State private var showEditSheet = false
     var body: some View {
         ZStack {
             AppColor.background.ignoresSafeArea()

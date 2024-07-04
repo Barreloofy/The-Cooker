@@ -19,7 +19,7 @@ struct AddRecipeView: View {
         case No
     }
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 // mainInformation text entry fields.
                 Section(header: Text("Recipe Info")) {
@@ -34,9 +34,10 @@ struct AddRecipeView: View {
                 }.tint(Color.blue)
                 // Ingredients section
                 Section(header: Text("Ingredients")) {
-                    ForEach(userRecipe.ingredients.indices, id: \.self) {ingredientElement in
-                        Text("Ingredient \(ingredientElement+1)")
-                        ForEachIngredient(ingredientElement: $userRecipe.ingredients[ingredientElement])
+                    ForEach(userRecipe.ingredients.indices, id: \.self) {ingredientIndex in
+                        NavigationLink(destination: IngredientPresenterView(ingredient: $userRecipe.ingredients[ingredientIndex])) {
+                            Text("\(userRecipe.ingredients[ingredientIndex].name == "" ? "New Ingredient" : userRecipe.ingredients[ingredientIndex].name)")
+                        }
                     }
                     Button(action: {
                         userRecipe.ingredients.append(Ingredient(name: "", quantity: 0.0, unit: .none))
@@ -46,10 +47,10 @@ struct AddRecipeView: View {
                 }.tint(Color.blue)
                 // Directions section
                 Section(header: Text("Directions")) {
-                    ForEach($userRecipe.directions.indices, id: \.self) {directionElement in
-                        Text("Direction \(directionElement+1)")
-                        TextEditor(text: $userRecipe.directions[directionElement].description)
-                        Toggle(" Optional step?", isOn: $userRecipe.directions[directionElement].isOptional).tint(Color.blue)
+                    ForEach($userRecipe.directions.indices, id: \.self) {directionIndex in
+                        NavigationLink(destination: DirectionPresenterView(direction: $userRecipe.directions[directionIndex])) {
+                            Text(userRecipe.directions[directionIndex].description)
+                        }
                     }
                     Button(action: {
                         userRecipe.directions.append(Direction(description: "Add your Recipe`s Directions here...", isOptional: false))

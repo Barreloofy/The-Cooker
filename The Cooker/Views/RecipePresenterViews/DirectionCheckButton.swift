@@ -10,9 +10,8 @@ import SwiftUI
 struct DirectionCheckButton: View {
     
     var direction: Direction
-    @State var wasPressedDirection = false
+    @State private var wasPressedDirection = false
     var body: some View {
-        
         Button(action: {
             wasPressedDirection.toggle()
         }, label: {
@@ -29,6 +28,6 @@ struct DirectionCheckButton: View {
                     Label("\(direction.description)", systemImage: "circle")
                 }
             }
-        })
-    }
+      })
+   }
 }

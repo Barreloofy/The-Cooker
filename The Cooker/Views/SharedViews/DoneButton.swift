@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct DoneButton: View {
+    
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Button(action: {dismiss()}, label: {
+                Text("Done")
+        })
     }
-}
-
-#Preview {
-    DoneButton()
 }

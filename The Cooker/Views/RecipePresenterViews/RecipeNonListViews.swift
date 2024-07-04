@@ -30,6 +30,7 @@ struct RecipeNonListViews: View {
         Text(currentRecipe.mainInformation.name)
             .font(.title)
             .bold()
+            .underline()
         
         Text(currentRecipe.mainInformation.description)
             .font(.subheadline)

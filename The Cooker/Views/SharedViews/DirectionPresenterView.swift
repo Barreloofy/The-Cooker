@@ -11,7 +11,7 @@ struct DirectionPresenterView: View {
     
     @Binding var direction: Direction
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 ZStack {
                     TextEditor(text: $direction.description)
@@ -19,6 +19,11 @@ struct DirectionPresenterView: View {
                 }
                 Toggle("Optional Step?", isOn: $direction.isOptional)
             }
+        }
+        .navigationTitle("Direction")
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            DoneButton()
         }
     }
 }

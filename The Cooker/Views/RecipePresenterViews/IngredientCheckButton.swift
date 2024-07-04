@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct IngredientCheckButton: View {
+    
     var ingredient: Ingredient
-    @State var wasPressedIngredient = false
+    @State private var wasPressedIngredient = false
     var body: some View {
         
         Button(action: {

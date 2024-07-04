@@ -11,7 +11,7 @@ struct IngredientPresenterView: View {
     
     @Binding var ingredient: Ingredient
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 HStack {
                     Text("Name:")
@@ -30,5 +30,10 @@ struct IngredientPresenterView: View {
             }
         }
         .navigationTitle("Ingredient")
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            DoneButton()
+        }
+        .tint(.blue)
     }
 }
