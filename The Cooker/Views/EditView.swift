@@ -55,7 +55,7 @@ struct EditView: View {
                 // Directions Section
                 Section(header: Text("Directions")) {
                     ForEach(currentRecipe.directions.indices, id: \.self) {index in
-                        NavigationLink("\(currentRecipe.directions[index].description)") {
+                        NavigationLink("\(currentRecipe.directions[index].description.isEmpty ? "New Direction" : currentRecipe.directions[index].description)") {
                             DirectionPresenterView(direction: $currentRecipe.directions[index])
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {

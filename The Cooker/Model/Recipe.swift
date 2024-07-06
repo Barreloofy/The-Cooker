@@ -96,7 +96,7 @@ struct Direction: Identifiable {
         self.isOptional = isOptional
     }
     init() {
-        self.init(description: "Add your Recipe`s Directions here...", isOptional: false)
+        self.init(description: "", isOptional: false)
     }
 }
 

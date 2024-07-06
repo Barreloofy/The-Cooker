@@ -42,7 +42,7 @@ struct AddRecipeView: View {
                 Section(header: Text("Ingredients")) {
                     ForEach(userRecipe.ingredients.indices, id: \.self) {ingredientIndex in
                         NavigationLink(destination: IngredientPresenterView(ingredient: $userRecipe.ingredients[ingredientIndex])) {
-                            Text("\(userRecipe.ingredients[ingredientIndex].name == "" ? "New Ingredient" : userRecipe.ingredients[ingredientIndex].name)")
+                            Text("\(userRecipe.ingredients[ingredientIndex].name.isEmpty ? "New Ingredient" : userRecipe.ingredients[ingredientIndex].name)")
                         }
                     }
                     .onMove(perform: { indices, newOffset in
@@ -58,14 +58,14 @@ struct AddRecipeView: View {
                 Section(header: Text("Directions")) {
                     ForEach($userRecipe.directions.indices, id: \.self) {directionIndex in
                         NavigationLink(destination: DirectionPresenterView(direction: $userRecipe.directions[directionIndex])) {
-                            Text(userRecipe.directions[directionIndex].description)
+                            Text("\(userRecipe.directions[directionIndex].description.isEmpty ? "New Direction" : userRecipe.directions[directionIndex].description)")
                         }
                     }
                     .onMove(perform: { indices, newOffset in
                         userRecipe.directions.move(fromOffsets: indices, toOffset: newOffset)
                     })
                     Button(action: {
-                        userRecipe.directions.append(Direction(description: "Add your Recipe`s Directions here...", isOptional: false))
+                        userRecipe.directions.append(Direction())
                     }, label: {
                         Image(systemName: "plus")
                     })

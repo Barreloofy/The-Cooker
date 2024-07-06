@@ -20,7 +20,9 @@ struct RecipeListView: View {
                 
                 ForEach(currentRecipe.ingredients.indices, id: \.self) {ingredientIndex in
                     let ingredient = currentRecipe.ingredients[ingredientIndex]
-                    IngredientCheckButton(ingredient: ingredient)
+                    if !ingredient.name.isEmpty {
+                        IngredientCheckButton(ingredient: ingredient)
+                    }
                 }
             }
             Section(header: Text("Directions")){
@@ -31,7 +33,9 @@ struct RecipeListView: View {
                 
                 ForEach(currentRecipe.directions.indices, id: \.self) {directionIndex in
                     let direction = currentRecipe.directions[directionIndex]
-                    DirectionCheckButton(direction: direction)
+                    if !direction.description.isEmpty {
+                        DirectionCheckButton(direction: direction)
+                    }
                 }
             }
         }
