@@ -24,7 +24,14 @@ struct AddRecipeView: View {
                 Section(header: Text("Recipe Info")) {
                     TextField("Recipe Name", text: $userRecipe.mainInformation.name)
                     TextField("Author", text: $userRecipe.mainInformation.author)
-                    TextField("Description", text: $userRecipe.mainInformation.description)
+                    ZStack {
+                        if userRecipe.mainInformation.description.isEmpty {
+                            TextEditor(text: .constant("Description"))
+                                .opacity(0.25)
+                        }
+                        TextEditor(text: $userRecipe.mainInformation.description)
+                    }
+                    .padding(.leading, -2)
                     Picker("Recipe Category", selection: $userRecipe.mainInformation.category) {
                         ForEach(MainInformation.Category.allCases, id: \.self) {category in
                             Text(category.rawValue)

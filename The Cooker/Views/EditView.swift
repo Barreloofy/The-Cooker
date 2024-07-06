@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditView: View {
     
+    @State private var showAlert = false
     @EnvironmentObject private var recipeData: RecipeData
     @Binding var showEditSheet: Bool
     @State var currentRecipe: Recipe
@@ -16,17 +17,13 @@ struct EditView: View {
         NavigationStack {
             Form {
                 Section(header: Text("Main Information")) {
-                    if currentRecipe.mainInformation.name != "" {
-                        TextField("\(currentRecipe.mainInformation.name)", text: $currentRecipe.mainInformation.name)
-                    } else {
-                        TextField("Recipe Name", text: $currentRecipe.mainInformation.name)
-                    }
-                    if currentRecipe.mainInformation.author != "" {
-                        TextField("\(currentRecipe.mainInformation.author)", text: $currentRecipe.mainInformation.author)
-                    } else {
-                        TextField("Author", text: $currentRecipe.mainInformation.author)
-                    }
+                    TextField("Recipe Name", text: $currentRecipe.mainInformation.name)
+                    TextField("Author", text: $currentRecipe.mainInformation.author)
                     ZStack {
+                        if currentRecipe.mainInformation.description.isEmpty {
+                            TextEditor(text: .constant("Description"))
+                                .opacity(0.25)
+                        }
                         TextEditor(text: $currentRecipe.mainInformation.description)
                         Text(currentRecipe.mainInformation.description)
                             .opacity(0)
@@ -36,7 +33,7 @@ struct EditView: View {
                 // Ingredients Section
                 Section(header: Text("Ingredients")) {
                     ForEach(currentRecipe.ingredients.indices, id: \.self) {index in
-                        NavigationLink("\(currentRecipe.ingredients[index].name)") {
+                        NavigationLink("\(currentRecipe.ingredients[index].name == "" ? "New Ingredient" : currentRecipe.ingredients[index].name)") {
                             IngredientPresenterView(ingredient: $currentRecipe.ingredients[index])
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
@@ -78,15 +75,24 @@ struct EditView: View {
                         Image(systemName: "plus")
                     })
                 }
+                // Image Section
+                Section(header: Text("Image")) {
+                    AddImageButton(customImage: $currentRecipe.customImage)
+                }
             }
             .toolbar {
                 ToolbarItem {
                     Button("Save", action: {
-                        recipeData.saveModifications(currentRecipe)
-                        showEditSheet.toggle()
+                        if !currentRecipe.mainInformation.name.isEmpty {
+                            recipeData.saveModifications(currentRecipe)
+                            showEditSheet.toggle()
+                        } else {
+                            showAlert.toggle()
+                        }
           })
         }
       }
+            .alert("Provide a recipe name first!", isPresented: $showAlert) {}
     }
   }
 }

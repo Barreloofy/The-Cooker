@@ -40,7 +40,7 @@ struct RecipeNonListViews: View {
             )
         HStack {
             Text("Author:")
-            Text(currentRecipe.mainInformation.author)
+            Text("\(currentRecipe.mainInformation.author.isEmpty ? "No Author" : currentRecipe.mainInformation.author)")
         }
         .font(.subheadline)
         .bold()
