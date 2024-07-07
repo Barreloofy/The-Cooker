@@ -10,7 +10,8 @@ import SwiftUI
 
 class RecipeData: ObservableObject {
     @Published private(set) var recipeArray = Recipe.testRecipes
-
+    @Published var showOptionalSteps: Bool = false
+    
     func recipeSorter(_ category: MainInformation.Category) -> [Recipe] {
         var filteredRecipes = [Recipe]()
         for recipe in recipeArray {

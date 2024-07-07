@@ -9,4 +9,5 @@ import SwiftUI
 
 struct AppColor {
     static let background = Color(.secondarySystemBackground)
+    
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeListView: View {
     
+    @EnvironmentObject private var recipeData: RecipeData
     var currentRecipe: Recipe
     var body: some View {
         List {
@@ -33,7 +34,10 @@ struct RecipeListView: View {
                 
                 ForEach(currentRecipe.directions.indices, id: \.self) {directionIndex in
                     let direction = currentRecipe.directions[directionIndex]
-                    if !direction.description.isEmpty {
+                    if recipeData.showOptionalSteps && direction.isOptional {
+                        EmptyView()
+                    }
+                    else if !direction.description.isEmpty {
                         DirectionCheckButton(direction: direction)
                     }
                 }

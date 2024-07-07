@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecipeCategoryScene: View {
     
+    @State private var showSettings: Bool = false
     @State private var isPresenting: Bool = false
     var body: some View {
         NavigationStack {
@@ -20,6 +21,14 @@ struct RecipeCategoryScene: View {
             .padding(10)
             .frame(maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .top)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        showSettings.toggle()
+                    }, label: {
+                        Image(systemName: "gear")
+                    })
+                    .foregroundStyle(.black)
+                }
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Category")
                         .font(.largeTitle)
@@ -42,5 +51,8 @@ struct RecipeCategoryScene: View {
         .sheet(isPresented: $isPresenting) {
             AddRecipeView()
         }
+        .sheet(isPresented: $showSettings, content: {
+            SettingsView()
+        })
     }
 }
