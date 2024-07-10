@@ -17,11 +17,7 @@ struct TabBarView: View {
             FavoriteView()
                 .tabItem {
                     Label("Favorites", systemImage: "star.fill")
-                }
-            searchView()
-                .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
-                }
+           }
         }
     }
 }

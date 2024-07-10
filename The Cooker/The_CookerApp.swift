@@ -13,7 +13,7 @@ import SwiftUI
     @StateObject private var recipeData = RecipeData()
     var body: some Scene {
         WindowGroup {
-            RecipeCategoryScene()
+            TabBarView()
                 .environmentObject(recipeData)
         }
     }

@@ -14,6 +14,10 @@ struct DirectionPresenterView: View {
         NavigationStack {
             Form {
                 ZStack {
+                    if direction.description.isEmpty {
+                        TextEditor(text: .constant("Directions"))
+                            .opacity(0.25)
+                    }
                     TextEditor(text: $direction.description)
                     Text("                                                                                     \(direction.description)").opacity(0)
                 }

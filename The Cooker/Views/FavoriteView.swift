@@ -16,12 +16,15 @@ struct FavoriteView: View {
             ForEach(isFavorite) {favorite in
                 NavigationLink(destination: RecipeViewScene(currentRecipe: favorite)) {
                     Text(favorite.mainInformation.name)
-                }
+              }
             }
+          }
+        .navigationTitle("Favorite's")
+        .modifier(ListPlaceholderModifier(items: isFavorite,
+               placeholder: Text("No Favorites yet").font(.title).bold()))
         }
       }
     }
-}
 
 #Preview {
     FavoriteView()

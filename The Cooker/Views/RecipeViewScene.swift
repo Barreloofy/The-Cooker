@@ -9,6 +9,9 @@ import SwiftUI
 
 struct RecipeViewScene: View {
     
+    @State private var pushView: Bool = false
+    var nonRegularParent: Bool = false
+    @EnvironmentObject private var recipeData: RecipeData
     var currentRecipe: Recipe
     @State private var showEditSheet = false
     var body: some View {
@@ -20,6 +23,13 @@ struct RecipeViewScene: View {
             }
         }
         .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: {
+                    recipeData.setFavoriteValue(currentRecipe)
+                }, label: {
+                    Image(systemName:"\(currentRecipe.isFavorite ? "star.fill" : "star")")
+                })
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
                     showEditSheet.toggle()

@@ -35,4 +35,13 @@ class RecipeData: ObservableObject {
         guard let recipePosition = findRecipeIndex(recipe) else {return}
         recipeArray[recipePosition] = recipe
     }
+    func setFavoriteValue(_ recipe: Recipe) {
+        var recipe = recipe
+        if recipe.isFavorite {
+            recipe.isFavorite = false
+        } else {
+            recipe.isFavorite = true
+        }
+        saveModifications(recipe)
+    }
 }
