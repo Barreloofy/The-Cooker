@@ -16,7 +16,7 @@ struct SpecificCategoryScene: View {
         List {
             ForEach(recipeData.recipeSorter(category)) {currentRecipe in
                 NavigationLink(destination: RecipeViewScene(currentRecipe: currentRecipe)) {
-                  Text(currentRecipe.mainInformation.name)
+                  ListRowView(recipe: currentRecipe)
                       .swipeActions(allowsFullSwipe: false) {
                           Button("Delete") {
                               showAlert.toggle()
