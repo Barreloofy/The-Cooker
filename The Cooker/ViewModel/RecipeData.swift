@@ -12,6 +12,14 @@ class RecipeData: ObservableObject {
     @Published private(set) var recipeArray = Recipe.testRecipes
     @Published var showOptionalSteps: Bool = false
     
+    init() {
+        showOptionalSteps = UserDefaults.standard.bool(forKey: "showOptionalSteps")
+    }
+    
+    func toggleOptionalSteps() {
+            UserDefaults.standard.set(showOptionalSteps, forKey: "showOptionalSteps")
+        }
+    
     func recipeSorter(_ category: MainInformation.Category) -> [Recipe] {
         var filteredRecipes = [Recipe]()
         for recipe in recipeArray {

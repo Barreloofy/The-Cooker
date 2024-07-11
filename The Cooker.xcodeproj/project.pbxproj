@@ -128,15 +128,15 @@
 			children = (
 				29AF74242C3F0F5300F91F8D /* CustomViewHelpers */,
 				297E0AD02C33300900E979ED /* SharedViews */,
+				2946B1682C3C03AB00DD05C4 /* TabBarView.swift */,
 				29F5D7482C16D4CC00DF04CD /* RecipeCategoryScene.swift */,
+				2946B16A2C3C050300DD05C4 /* FavoriteView.swift */,
 				29AAF9742C2E2025002EDE0C /* Custom Recipe */,
 				29D18AFC2C193DF00066A851 /* CategoryForEachScene.swift */,
 				29ED39C82C1265B8005ADD72 /* SpecificCategoryScene.swift */,
 				29D0CD742C14211100701166 /* RecipeViewScene.swift */,
 				29AAF9752C2E237C002EDE0C /* RecipePresenterViews */,
 				294991B42C2A34D000FECA1C /* EditView.swift */,
-				2946B1682C3C03AB00DD05C4 /* TabBarView.swift */,
-				2946B16A2C3C050300DD05C4 /* FavoriteView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

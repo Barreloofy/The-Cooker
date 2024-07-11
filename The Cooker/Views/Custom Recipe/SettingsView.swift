@@ -14,9 +14,14 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Toggle("Dark Mode", isOn: .constant(true))
                 Toggle("Hide optional steps", isOn: $recipeData.showOptionalSteps)
+                    .onChange(of: recipeData.showOptionalSteps) {
+                        recipeData.toggleOptionalSteps()
+                    }
             }
+            .scrollContentBackground(.hidden)
+            .background(AppColor.background)
+            .navigationTitle("Settings")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
