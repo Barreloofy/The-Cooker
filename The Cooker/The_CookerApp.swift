@@ -15,6 +15,9 @@ import SwiftUI
         WindowGroup {
             TabBarView()
                 .environmentObject(recipeData)
+                .onAppear(perform: {
+                    try! recipeData.load()
+                })
         }
     }
 }

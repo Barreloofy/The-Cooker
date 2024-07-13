@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 
 class RecipeData: ObservableObject {
-    @Published private(set) var recipeArray = Recipe.testRecipes
+    @Published private(set) var recipeArray = Recipe.testRecipes {
+        didSet {
+             try! save()
+        }
+    }
     @Published var showOptionalSteps: Bool = false
     
     init() {
@@ -51,5 +55,54 @@ class RecipeData: ObservableObject {
             recipe.isFavorite = true
         }
         saveModifications(recipe)
+    }
+}
+
+
+extension RecipeData {
+    
+    internal enum FileManagerError: Error {
+        case saveFailed
+        case loadRetrivingFailed
+        case decodeFailed
+        case imageConversionFailed
+    }
+    
+    private var recipeFileUrl: URL {
+        get {
+            do {
+                let documentsDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                return documentsDirectory.appendingPathComponent("recipeData", conformingTo: .json)
+            }
+            catch {
+                fatalError("An error occurred while getting the url: \(error)")
+            }
+        }
+    }
+    func save() throws {
+        let data = try JSONEncoder().encode(recipeArray)
+        try data.write(to: recipeFileUrl)
+    }
+    
+    func load() throws {
+        guard FileManager.default.isReadableFile(atPath: recipeFileUrl.path) else { return }
+        guard let data = try? Data(contentsOf: recipeFileUrl) else {
+            throw FileManagerError.loadRetrivingFailed
+        }
+        do {
+            recipeArray = try JSONDecoder().decode([Recipe].self, from: data)
+        }
+        catch {
+            throw FileManagerError.decodeFailed
+        }
+    }
+    func decodeImage(_ imageData: Data?) throws -> UIImage {
+        guard let data = imageData else {
+            throw FileManagerError.decodeFailed
+        }
+        guard let image = UIImage(data: data) else {
+            throw FileManagerError.imageConversionFailed
+        }
+        return image
     }
 }

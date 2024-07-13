@@ -7,13 +7,14 @@
 
 import Foundation
 import PhotosUI
-struct Recipe: Identifiable {
-    
+
+struct Recipe: Identifiable,Codable {
     var id = UUID()
+    
     var mainInformation: MainInformation
     var ingredients: [Ingredient]
     var directions: [Direction]
-    var customImage: UIImage?
+    var customImage: Data?
     var isFavorite = false
     
     init(mainInformation: MainInformation, ingredients:[Ingredient], directions:[Direction]) {
@@ -30,14 +31,14 @@ struct Recipe: Identifiable {
     }
 }
 
-struct MainInformation: Identifiable {
+struct MainInformation: Identifiable,Codable {
     var id = UUID()
     var name: String
     var description: String
     var author: String
     var category: Category
     
-    enum Category: String, CaseIterable {
+    enum Category: String, CaseIterable,Codable {
         case breakfast = "Breakfast"
         case lunch = "Lunch"
         case dinner = "Dinner"
@@ -45,7 +46,7 @@ struct MainInformation: Identifiable {
     }
 }
 
-struct Ingredient: Identifiable {
+struct Ingredient: Identifiable,Codable {
     var id = UUID()
     var name: String
     var quantity: Double
@@ -65,7 +66,7 @@ struct Ingredient: Identifiable {
         }
     }
 
-    enum Unit: String, CaseIterable {
+    enum Unit: String, CaseIterable,Codable {
         case oz = "Ounces"
         case g = "Grams"
         case cups = "Cups"
@@ -87,7 +88,7 @@ struct Ingredient: Identifiable {
     }
 }
 
-struct Direction: Identifiable {
+struct Direction: Identifiable,Codable {
     var id = UUID()
     var description: String
     var isOptional: Bool

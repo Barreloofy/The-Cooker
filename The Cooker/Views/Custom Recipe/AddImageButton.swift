@@ -10,7 +10,7 @@ import PhotosUI
 
 struct AddImageButton: View {
     @State private var SelectedImage: PhotosPickerItem?
-    @Binding var customImage: UIImage?
+    @Binding var customImage: Data?
     
     var body: some View {
         PhotosPicker(selection: $SelectedImage, matching: .images) {
@@ -19,7 +19,7 @@ struct AddImageButton: View {
         .onChange(of: SelectedImage) {
             Task {
             if let data = try? await SelectedImage?.loadTransferable(type: Data.self) {
-                customImage = UIImage(data: data)
+                customImage = data
             }
           }
         }
