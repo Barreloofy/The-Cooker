@@ -78,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				2981F7542C20EB62001D31E9 /* RecipeData.swift */,
-				297BB39A2C351C7800494928 /* AppColor.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -86,6 +85,7 @@
 		297E0AD02C33300900E979ED /* SharedViews */ = {
 			isa = PBXGroup;
 			children = (
+				297BB39A2C351C7800494928 /* AppColor.swift */,
 				297E0AD12C33307C00E979ED /* IngredientPresenterView.swift */,
 				297E0AD32C333EFF00E979ED /* DirectionPresenterView.swift */,
 				291BE7F82C36D7AB00D1F40D /* DoneButton.swift */,
