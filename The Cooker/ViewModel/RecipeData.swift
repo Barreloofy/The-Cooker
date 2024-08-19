@@ -11,7 +11,7 @@ import SwiftUI
 class RecipeData: ObservableObject {
     @Published private(set) var recipeArray = Recipe.testRecipes {
         didSet {
-             try! save()
+            try! save()
         }
     }
     @Published var showOptionalSteps: Bool = false
@@ -61,7 +61,7 @@ class RecipeData: ObservableObject {
 
 extension RecipeData {
     
-    internal enum FileManagerError: Error {
+    private enum FileManagerError: Error {
         case saveFailed
         case loadRetrivingFailed
         case decodeFailed
@@ -80,8 +80,12 @@ extension RecipeData {
         }
     }
     func save() throws {
-        let data = try JSONEncoder().encode(recipeArray)
-        try data.write(to: recipeFileUrl)
+        do {
+            let data = try JSONEncoder().encode(recipeArray)
+            try data.write(to: recipeFileUrl)
+        } catch {
+            throw FileManagerError.saveFailed
+        }
     }
     
     func load() throws {
