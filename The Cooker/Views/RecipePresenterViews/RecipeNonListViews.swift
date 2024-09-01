@@ -13,7 +13,7 @@ struct RecipeNonListViews: View {
     var currentRecipe: Recipe
     var body: some View {
         if currentRecipe.customImage != nil {
-            if let image = try? recipeData.decodeImage(currentRecipe.customImage) {
+            if let image = recipeData.decodeImage(currentRecipe.customImage) {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)

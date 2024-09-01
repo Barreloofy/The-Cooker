@@ -17,7 +17,7 @@ import SwiftUI
             TabBarView()
                 .environmentObject(recipeData)
                 .onAppear(perform: {
-                    try! recipeData.load()
+                    recipeData.load()
                 })
         }
     }

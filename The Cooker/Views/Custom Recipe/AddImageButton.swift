@@ -9,12 +9,21 @@ import SwiftUI
 import PhotosUI
 
 struct AddImageButton: View {
+    @EnvironmentObject private var recipeData: RecipeData
     @State private var SelectedImage: PhotosPickerItem?
     @Binding var customImage: Data?
     
     var body: some View {
         PhotosPicker(selection: $SelectedImage, matching: .images) {
-            Image(systemName: "plus")
+            //recipe.customImage == nil ? Image(systemName: "plus") : Image(systemName: "photo.on.rectangle.angled")
+            if customImage != nil {
+                Image(uiImage: recipeData.decodeImage(customImage)!)
+                    .resizable()
+                    .frame(width: 40,height: 40)
+                    .clipShape(Circle())
+            } else {
+                Image(systemName: "plus")
+            }
         }
         .onChange(of: SelectedImage) {
             Task {

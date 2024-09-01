@@ -7,11 +7,12 @@
 
 import Foundation
 import SwiftUI
+import OSLog
 
 class RecipeData: ObservableObject {
     @Published private(set) var recipeArray = Recipe.testRecipes {
         didSet {
-            try! save()
+            save()
         }
     }
     @Published var showOptionalSteps: Bool = false
@@ -44,10 +45,10 @@ class RecipeData: ObservableObject {
         return recipeArray.firstIndex {$0.id == recipe.id }
     }
     func saveModifications(_ recipe: Recipe) {
-        guard let recipePosition = findRecipeIndex(recipe) else {return}
+        guard let recipePosition = findRecipeIndex(recipe) else { return }
         recipeArray[recipePosition] = recipe
     }
-    func setFavoriteValue(_ recipe: Recipe) {
+    func setFavorite(_ recipe: Recipe) {
         var recipe = recipe
         if recipe.isFavorite {
             recipe.isFavorite = false
@@ -61,13 +62,6 @@ class RecipeData: ObservableObject {
 
 extension RecipeData {
     
-    private enum FileManagerError: Error {
-        case saveFailed
-        case loadRetrivingFailed
-        case decodeFailed
-        case imageConversionFailed
-    }
-    
     private var recipeFileUrl: URL {
         get {
             do {
@@ -79,34 +73,27 @@ extension RecipeData {
             }
         }
     }
-    func save() throws {
+    func save() {
         do {
             let data = try JSONEncoder().encode(recipeArray)
             try data.write(to: recipeFileUrl)
         } catch {
-            throw FileManagerError.saveFailed
+            Logger().error("\(error)")
         }
     }
     
-    func load() throws {
+    func load() {
         guard FileManager.default.isReadableFile(atPath: recipeFileUrl.path) else { return }
-        guard let data = try? Data(contentsOf: recipeFileUrl) else {
-            throw FileManagerError.loadRetrivingFailed
-        }
+        guard let data = try? Data(contentsOf: recipeFileUrl) else { return }
         do {
             recipeArray = try JSONDecoder().decode([Recipe].self, from: data)
         }
         catch {
-            throw FileManagerError.decodeFailed
+            Logger().error("\(error)")
         }
     }
-    func decodeImage(_ imageData: Data?) throws -> UIImage {
-        guard let data = imageData else {
-            throw FileManagerError.decodeFailed
-        }
-        guard let image = UIImage(data: data) else {
-            throw FileManagerError.imageConversionFailed
-        }
-        return image
+    func decodeImage(_ imageData: Data?) -> UIImage? {
+        guard let data = imageData else { return nil }
+        return UIImage(data: data)
     }
 }

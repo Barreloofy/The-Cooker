@@ -18,6 +18,11 @@ struct SettingsView: View {
                     .onChange(of: recipeData.showOptionalSteps) {
                         recipeData.toggleOptionalSteps()
                     }
+                Section("""
+tip:
+
+You can search by recipe name, author and category.
+""") {}
             }
             .scrollContentBackground(.hidden)
             .background(AppColor.background)
@@ -31,4 +36,9 @@ struct SettingsView: View {
             }
         }
     }
+}
+
+#Preview {
+    SettingsView()
+        .environmentObject(RecipeData())
 }

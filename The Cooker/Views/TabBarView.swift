@@ -14,10 +14,14 @@ struct TabBarView: View {
                 .tabItem {
                     Label("Recipes", systemImage: "pencil")
                 }
+            SearchView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
             FavoriteView()
                 .tabItem {
                     Label("Favorites", systemImage: "star.fill")
-           }
+                }
         }
     }
 }

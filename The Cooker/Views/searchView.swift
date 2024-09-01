@@ -1,48 +1,33 @@
 //
-//  searchView.swift
+//  SearchView.swift
 //  The Cooker
 //
-//  Created by Nils on 7/8/24.
+//  Created by Nils on 9/1/24.
 //
 
 import SwiftUI
 
-struct searchView: View {
+struct SearchView: View {
     
     @EnvironmentObject private var recipeData: RecipeData
-    @State private var input: String = ""
+    @State private var searchText = ""
+    
     var body: some View {
         NavigationStack {
-        List {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                TextField("Search", text: $input)
-                if !input.isEmpty {
-                    Button(action: {
-                        input = ""
-                    }, label: {
-                        Image(systemName: "x.circle.fill")
-                    })
-                    .foregroundStyle(.gray)
+            List(recipeData.recipeArray) { recipe in
+                if searchText.isEmpty || recipe.contains(searchText) {
+                    NavigationLink(destination: RecipeViewScene(currentRecipe: recipe)) {
+                        ListRowView(recipe: recipe)
+                    }
                 }
             }
-            ForEach(result) {foundRecipe in
-                NavigationLink(destination: RecipeViewScene(currentRecipe: foundRecipe)) {
-                    Text(foundRecipe.mainInformation.name)
-                }
-            }
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+            .navigationTitle("Search")
         }
-      }
     }
 }
 
-#Preview {
-    searchView()
+#Preview() {
+    SearchView()
         .environmentObject(RecipeData())
-}
-
-extension searchView {
-    private var result: [Recipe] {
-        return recipeData.recipeArray.filter {$0.mainInformation.name == input}
-    }
 }

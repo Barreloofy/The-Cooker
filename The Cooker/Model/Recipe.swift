@@ -9,6 +9,9 @@ import Foundation
 import PhotosUI
 
 struct Recipe: Identifiable,Codable {
+    
+    static let testRecipe = Recipe(mainInformation: MainInformation(name: "Test Recipe", description: "Test Description", author: "Test Author", category: .lunch), ingredients: [Ingredient](), directions: [Direction]())
+    
     var id = UUID()
     
     var mainInformation: MainInformation
@@ -16,6 +19,13 @@ struct Recipe: Identifiable,Codable {
     var directions: [Direction]
     var customImage: Data?
     var isFavorite = false
+    
+    func contains(_ searchText: String) -> Bool {
+        let properties = [mainInformation.name,mainInformation.author,mainInformation.category.rawValue].map { $0.lowercased() }
+        return properties.contains { property in
+            property.contains(searchText.lowercased())
+        }
+    }
     
     init(mainInformation: MainInformation, ingredients:[Ingredient], directions:[Direction]) {
       self.mainInformation = mainInformation

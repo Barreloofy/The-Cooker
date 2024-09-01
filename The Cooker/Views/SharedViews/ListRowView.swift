@@ -13,7 +13,7 @@ struct ListRowView: View {
     var body: some View {
         HStack {
             if recipe.customImage != nil {
-                if let image = try? recipeData.decodeImage(recipe.customImage) {
+                if let image = recipeData.decodeImage(recipe.customImage) {
                     Image(uiImage: image)
                         .resizable()
                         .frame(width: 40,height: 40)
@@ -27,5 +27,11 @@ struct ListRowView: View {
             }
             Text(recipe.mainInformation.name)
         }
+    }
+}
+
+#Preview {
+    List {
+        ListRowView(recipe: Recipe.testRecipe)
     }
 }

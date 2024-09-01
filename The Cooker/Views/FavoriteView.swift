@@ -13,7 +13,7 @@ struct FavoriteView: View {
     var body: some View {
         NavigationStack {
         List {
-            ForEach(isFavorite) {favorite in
+            ForEach(favoriteRecipes) { favorite in
                 NavigationLink(destination: RecipeViewScene(currentRecipe: favorite)) {
                     ListRowView(recipe: favorite)
               }
@@ -21,8 +21,7 @@ struct FavoriteView: View {
           }
         .listStyle(PlainListStyle())
         .navigationTitle("Favorite's")
-        .modifier(ListPlaceholderModifier(items: isFavorite,
-               placeholder: Text("No Favorites yet").font(.title).bold()))
+        .modifier(ListPlaceholderModifier(items: favoriteRecipes,placeholder: Text("No Favorites yet").font(.title).bold()))
         }
       }
     }
@@ -34,7 +33,7 @@ struct FavoriteView: View {
 
 
 extension FavoriteView {
-    private var isFavorite: [Recipe] {
-        return recipeData.recipeArray.filter {$0.isFavorite }
+    private var favoriteRecipes: [Recipe] {
+        return recipeData.recipeArray.filter { $0.isFavorite }
     }
 }
